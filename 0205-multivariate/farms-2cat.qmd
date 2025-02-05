@@ -1,0 +1,65 @@
+---
+title: "2 Categorical"
+execute: 
+  echo: false
+---
+
+```{r}
+library(ggplot2)
+```
+
+
+
+```{r}
+farms <- read.csv("farms.csv")
+farms
+```
+## Distribution of Farms in States
+
+```{r}
+#| fig-height: 2
+#| fig-width: 2
+ggplot(data = farms, mapping = aes(x = state)) +
+  geom_bar()
+```
+
+## Distribution of Produces in States
+
+### Stacked
+
+```{r}
+#| fig-height: 2
+#| fig-width: 3
+ggplot(data = farms, mapping = aes(x = state, fill = produce)) +
+  geom_bar()
+```
+
+### Dodged
+
+```{r}
+#| fig-height: 2
+#| fig-width: 3
+ggplot(data = farms, mapping = aes(x = state, fill = produce)) +
+  geom_bar(position = "dodge")
+```
+
+### Facetted
+
+```{r}
+#| fig-height: 2
+#| fig-width: 3
+ggplot(data = farms, mapping = aes(x = state)) +
+  geom_bar() +
+  facet_wrap(~produce)
+```
+
+### Percentage
+
+```{r}
+#| fig-height: 2
+#| fig-width: 3
+ggplot(data = farms, mapping = aes(x = state, fill = produce)) +
+  geom_bar(position = "fill")
+```
+
+

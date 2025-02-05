@@ -1,0 +1,55 @@
+---
+title: "2 Categorical"
+execute: 
+  echo: false
+---
+
+```{r}
+library(ggplot2)
+library(ggridges)
+```
+
+
+```{r}
+measures <- read.csv("measures.csv")
+measures
+```
+
+## Distribution of Measures
+
+```{r}
+#| fig-height: 2
+#| fig-width: 2
+ggplot(data = measures, mapping = aes(x = weight)) +
+  geom_density()
+```
+
+## Distribution of Measures for Produces
+
+### Overlayed
+
+```{r}
+#| fig-height: 2
+#| fig-width: 3
+ggplot(data = measures, mapping = aes(x = weight, color = produce)) +
+  geom_density()
+```
+
+### Faceted
+
+```{r}
+#| fig-height: 2
+#| fig-width: 2
+ggplot(data = measures, mapping = aes(x = weight)) +
+  geom_density() +
+  facet_wrap(~produce)
+```
+
+
+### Ridgelined
+```{r}
+#| fig-height: 2
+#| fig-width: 2
+ggplot(data = measures, mapping = aes(x = weight, y = produce)) +
+  geom_density_ridges(alpha = .5)
+```
