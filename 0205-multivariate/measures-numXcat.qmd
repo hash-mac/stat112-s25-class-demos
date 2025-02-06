@@ -39,7 +39,7 @@ ggplot(data = measures, mapping = aes(x = weight, color = produce)) +
 
 ```{r}
 #| fig-height: 2
-#| fig-width: 2
+#| fig-width: 4
 ggplot(data = measures, mapping = aes(x = weight)) +
   geom_density() +
   facet_wrap(~produce)
