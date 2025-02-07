@@ -1,0 +1,7 @@
+---
+title: "Customed Leaflet"
+---
+
+put icons on map
+
+so hover
