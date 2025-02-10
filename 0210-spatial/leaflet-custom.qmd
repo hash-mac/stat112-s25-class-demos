@@ -1,7 +1,59 @@
 ---
-title: "Customed Leaflet"
+title: "Starbucks in Minnesota"
+execute: 
+  warning: false
+  echo: false
 ---
 
-put icons on map
+```{r}
+library(tidyverse)
+library(leaflet)
+```
 
-so hover
+
+```{r}
+# Starbucks locations worldwide
+starbucks <- read.csv("https://mac-stat.github.io/data/starbucks.csv")
+```
+
+```{r}
+# Starbucks locations in MN only
+starbucks_mn <- starbucks |> 
+  filter(Country == "US", State.Province == "MN")
+```
+
+
+
+```{r}
+sb_icon = "https://cdn.freebiesupply.com/logos/large/2x/starbucks-logo-png-transparent.png"
+```
+
+
+```{r}
+leaflet(
+  data = starbucks_mn, 
+  # specify zoom limits
+  options = leafletOptions(minZoom = 7, maxZoom = 12)
+) |>
+  
+addTiles() |>
+
+# fly to a given location and zoom-level using smooth pan-zoom
+flyTo(
+  lng = mean(starbucks_mn$Longitude),
+  lat = mean(starbucks_mn$Latitude) + .7,
+  zoom = 7
+) |>
+
+addMarkers(
+  # show popup on hover
+  label = starbucks_mn$Store.Name,
+  
+  # custom markers
+  icon = list(iconUrl = sb_icon, iconSize = c(20, 20))
+)
+```
+
+## References
+
+- Tom Jenkins' [An Introduction to R Leaflet](https://tomjenkins.netlify.app/tutorials/r-leaflet-introduction/)
