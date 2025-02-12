@@ -1,0 +1,56 @@
+---
+title: "Viridis Colored Map"
+---
+
+```{r}
+# attach packages
+library(maps)
+library(mapproj)
+library(tidyverse)
+library(ggthemes)
+library(viridis)
+library(showtext)   # fonts
+```
+
+```{r}
+# import some Google fonts
+font_add_google("Roboto", "Roboto")
+my_font <- "Roboto"
+```
+
+
+```{r}
+# load data
+data("unemp", package = "viridis")
+
+county_df <- map_data("county", projection = "albers", parameters = c(39, 45))
+names(county_df) <- c("long", "lat", "group", "order", "state_name", "county")
+county_df$state <- state.abb[match(county_df$state_name, tolower(state.name))]
+county_df$state_name <- NULL
+
+state_df <- map_data("state", projection = "albers", parameters = c(39, 45))
+
+choropleth <- merge(county_df, unemp, by = c("state", "county"))
+choropleth <- choropleth[order(choropleth$order), ]
+```
+
+```{r}
+ggplot(choropleth, aes(long, lat, group = group)) +
+  geom_polygon(aes(fill = rate), color = alpha("white", 1/2), linewidth = .2) +
+  geom_polygon(data = state_df, color = "white", fill = NA) +
+  coord_fixed() + 
+  theme_map() + 
+  labs(title = "Unemployment Rate by County", fill = "Rate") +
+  scale_fill_viridis(option = "magma", direction = -1) +
+  theme(
+    plot.title = element_text(face = "bold", size = rel(1.8), color = "gray20", family = my_font)
+  )
+```
+
+
+
+
+## References
+
+- [Introduction to the viridis color maps](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html)
+- [Changing fonts in ggplot2](https://stackoverflow.com/questions/34522732/changing-fonts-in-ggplot2)
