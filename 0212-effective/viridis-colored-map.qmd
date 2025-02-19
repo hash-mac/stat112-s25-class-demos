@@ -1,5 +1,8 @@
 ---
 title: "Viridis Colored Map"
+execute: 
+  echo: false
+  warning: false
 ---
 
 ```{r}
