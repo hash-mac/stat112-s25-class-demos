@@ -1,0 +1,48 @@
+---
+title: "Quarto: Tips & Tricks"
+---
+
+## Styling Project via YAML metadata keys
+
+### Website Level 
+
+using `_quarto.yml` file which exists at the root directory of the project
+
+### Page Level 
+
+using Page YAML header which is placed at the top of the document and starts end ends with a line that only contain 3 dashes `---`
+
+### Code Block Level 
+
+using code block YAML options which are proceeded by `#| `
+
+
+## Tricks
+
+### Hiding Code Blocks
+
+
+### Folding Code Blocks
+
+
+### Hiding Code Errors
+
+
+### Hiding Code Warning
+
+
+### Changing Website Style
+
+
+### References
+
+- [Quarto Guide](https://quarto.org/docs/guide/)
+- [Quarto HTML Basics](https://quarto.org/docs/output-formats/html-basics.html)
+- [Quarto Code Annotation](https://quarto.org/docs/authoring/code-annotation.html)
+- [Using R](https://quarto.org/docs/computations/r.html)
+- [Execution Options](https://quarto.org/docs/computations/execution-options.html)
+- [Quarto Websites](https://quarto.org/docs/websites/)
+- [Quarto Books](https://quarto.org/docs/books/)
+- [Quarto Manuscripts](https://quarto.org/docs/manuscripts/)
+- [Publishing](https://quarto.org/docs/publishing/)
+- [Includes](https://quarto.org/docs/authoring/includes.html)
