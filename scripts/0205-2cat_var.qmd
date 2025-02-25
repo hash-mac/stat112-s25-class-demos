@@ -11,7 +11,7 @@ library(ggplot2)
 
 
 ```{r}
-farms <- read.csv("farms.csv")
+farms <- read.csv("../data/farms.csv")
 farms
 ```
 ## Distribution of Farms in States
