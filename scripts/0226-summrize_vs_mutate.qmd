@@ -1,0 +1,55 @@
+---
+title: "Summarize vs Mutate"
+---
+
+```{r}
+library(tidyverse)
+```
+
+
+```{r}
+produce <- read.csv("../data/produce.csv")
+produce
+```
+
+```{r}
+produce |> 
+  group_by(name) |> 
+  summarize(avg = mean(wt))
+```
+
+```{r}
+produce |> 
+  group_by(name) |> 
+  summarize(avg = mean(wt, na.rm = TRUE))
+```
+
+```{r}
+produce |> 
+  group_by(name) |> 
+  mutate(mean(wt))
+```
+
+```{r}
+produce |> 
+  group_by(name) |> 
+  mutate(mean(wt, na.rm = TRUE))
+```
+
+```{r}
+produce |> 
+  select(wt) |> 
+  is.na()
+```
+
+```{r}
+produce |> 
+  is.na()
+```
+
+
+```{r}
+produce |> 
+  filter(is.na(wt))
+```
+
