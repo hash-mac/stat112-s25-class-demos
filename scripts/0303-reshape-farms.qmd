@@ -1,0 +1,22 @@
+---
+title: "Reshaping"
+---
+
+```{r}
+library(tidyverse)
+```
+
+
+```{r}
+farms_wide <- read.csv("../data/yield.csv")
+farms_wide
+```
+
+```{r}
+farms_wide |> 
+  pivot_longer(cols = starts_with("yld")) |> 
+  ggplot(aes(x = year, y = value, color = name)) +
+  geom_line() +
+  facet_wrap(~state)
+```
+
