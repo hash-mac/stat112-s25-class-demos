@@ -1,5 +1,7 @@
 ---
 title: "Joins"
+execute: 
+  warning: false
 ---
 
 
@@ -17,7 +19,7 @@ p <- read.csv("../data/prices.csv")
 p
 ```
 
-## Mutate Join
+## Mutate Joins
 ```{r}
 f |> left_join(p, join_by(prod == pr))
 ```
@@ -30,7 +32,7 @@ f |> inner_join(p, join_by(prod == pr))
 f |> full_join(p, join_by(prod == pr))
 ```
 
-## Filter Join
+## Filter Joins
 
 ```{r}
 f |> semi_join(p, join_by(prod == pr))
