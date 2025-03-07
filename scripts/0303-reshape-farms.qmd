@@ -12,7 +12,20 @@ farms_wide <- read.csv("../data/yield.csv")
 farms_wide
 ```
 
+
 ```{r}
+farms_wide |> 
+  pivot_longer(cols = c(yld_apple, yld_orange), 
+               names_to = "produce", 
+               values_to = "yld",
+               names_prefix = "yld_")
+```
+
+
+
+```{r}
+#| eval: false
+
 farms_wide |> 
   pivot_longer(cols = starts_with("yld")) |> 
   ggplot(aes(x = year, y = value, color = name)) +
