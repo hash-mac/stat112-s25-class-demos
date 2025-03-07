@@ -1,0 +1,45 @@
+---
+title: "Joins"
+execute: 
+  warning: false
+---
+
+## Load Packges
+```{r}
+library(tidyverse)
+```
+
+## Read Data
+```{r farms}
+f <- read.csv("../data/farms2.csv")
+f
+```
+
+```{r prices}
+p <- read.csv("../data/prices.csv")
+p
+```
+
+## Mutate Joins
+```{r left}
+f |> left_join(p, join_by(prod == pr))
+```
+
+```{r inner}
+f |> inner_join(p, join_by(prod == pr))
+```
+
+```{r full}
+f |> full_join(p, join_by(prod == pr))
+```
+
+## Filter Joins
+
+```{r semi}
+f |> semi_join(p, join_by(prod == pr))
+```
+
+```{r anti}
+f |> anti_join(p, join_by(prod == pr))
+```
+
